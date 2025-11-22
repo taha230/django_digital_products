@@ -10,7 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class FileInlineAdmin(admin.StackedInline): # because we have many files for product (forein key)
     model = File
-    fields =  ['title', 'file', 'is_enable']
+    fields =  ['title', 'file', 'is_enable', 'file_type']
     extra = 0
 
 

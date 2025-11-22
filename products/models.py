@@ -37,13 +37,23 @@ class Product(models.Model):
         verbose_name = _('Product') # show in admin
         verbose_name_plural = _('Products')
 
-
+    def __str__(self):
+        return self.title
 
 class File(models.Model):
+    FILE_AUDIO = 1
+    FILE_VIDEO = 2
+    FILE_PDF = 3
+    FILE_TYPE  = (
+        (FILE_AUDIO, _('audio')),
+        (FILE_VIDEO, _('video')),
+        (FILE_PDF, _('pdf')),
+    )
 
-    product = models.ForeignKey('Product', verbose_name=_('product'), blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', verbose_name=_('product'), related_name='files', blank=True, on_delete=models.CASCADE)
 
     title = models.CharField(_('title'), max_length=50)
+    file_type = models.PositiveSmallIntegerField(_('file_type') , choices=FILE_TYPE)
     is_enable = models.BooleanField(_('is_enable'), default=True)
     created_time = models.DateTimeField(_('created time'), auto_now_add=True)
     updated_time = models.DateTimeField(_('updated time'), auto_now=True)
@@ -53,3 +63,6 @@ class File(models.Model):
         db_table = 'files'
         verbose_name = _('File') # show in admin
         verbose_name_plural = _('Files')
+
+    def __str__(self):
+        return self.title
