@@ -15,7 +15,7 @@ class FileSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'file', 'file_type')
 
     def get_file_type(self, obj):
-        return obj.get_file_type_display()
+        return obj.get_file_type_display() # for display first element of file_type tuple
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
