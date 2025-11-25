@@ -2,13 +2,21 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from .models import Category, File, Product
 from .serializers import CategorySerializer, FileSerializer, ProductSerializer
 
 
+
 class ProductListView(APIView):
+
+    permission_classes = [IsAuthenticated]
     def get(self, request):
+
+        print(request.user)
+        print(request.auth)
+        print('+++++++++++++++++++++++')
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True, context={'request' : request}) # set context for show the URL absolute
         return Response(serializer.data)
