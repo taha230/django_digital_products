@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'products',
+    'users',
     'rest_framework',
 
 ]
@@ -128,3 +129,14 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authorization
+AUTH_USER_MODEL = 'users.User'
+
+# Cache
+CACHES = {
+    'default' : {
+        'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION' : 'unique-snowflake',
+    }
+}

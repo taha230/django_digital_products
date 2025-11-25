@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls')) # serach in urls.py in products
+    path('', include('products.urls')), # serach in urls.py in products
+    path('', include('users.urls'))  # serach in urls.py in users
 ]
 
 if settings.IS_DEVEL :
