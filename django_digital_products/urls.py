@@ -6,9 +6,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls')), # serach in urls.py in products
-    path('', include('users.urls'))  # serach in urls.py in users
+    path('', include('products.urls')),
+    path('', include('users.urls')),
+    path('subs/', include('subscriptions.urls')),
+    path('payments/', include('payments.urls'))
 ]
 
-if settings.IS_DEVEL :
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+if settings.IS_DEVEL:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
